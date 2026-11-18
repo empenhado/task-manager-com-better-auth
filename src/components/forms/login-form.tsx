@@ -1,5 +1,5 @@
 "use client"
-
+import Link from "next/link"
 import {useState} from "react";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, useForm } from "react-hook-form"
@@ -115,12 +115,17 @@ export default function LoginForm() {
           </FieldGroup>
         </form>
       </CardContent>
-      <CardFooter>
-        <Field orientation="horizontal">
-          <Button type="submit" form="form-login">
-            Entrar
-          </Button>
-        </Field>
+     <CardFooter className="flex flex-col gap-4">
+        <Button type="submit" form="form-login" className="w-full" disabled={loading}>
+          {loading ? "Entrando..." : "Entrar"}
+        </Button>
+
+        <p className="text-center text-sm text-muted-foreground">
+          Não tem uma conta?{" "}
+          <Link href="/signup" className="font-medium text-primary underline-offset-4 hover:underline">
+            Registre-se
+          </Link>
+        </p>
       </CardFooter>
     </Card>
   )
